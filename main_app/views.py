@@ -1,4 +1,6 @@
 from django.shortcuts import render
+# Import the CreateView generic class so we can use it
+from django.views.generic.edit import CreateView
 # Import the Cat Model
 from .models import Cat
 
@@ -22,6 +24,15 @@ def cats_index(request):
 def cats_detail(request, cat_id):
   cat = Cat.objects.get(id=cat_id)
   return render(request, 'cats/detail.html', { 'cat': cat })
+
+# We are using the CreateView generic class and are using it to extend the class
+class CatCreate(CreateView):
+  model = Cat
+  # fields is required for a CreateView and can be used to limit or change the ordering of the attrivutes fromt he Cat model when generated in the ModelForm and passed to the template
+  # __all__ will select all of the fields from the Cat model, but you can write them out as such:
+  # fields = ['name', 'breed', 'description', 'age']
+  fields = '__all__'
+
 
 
 # Add this cats list below the imports
