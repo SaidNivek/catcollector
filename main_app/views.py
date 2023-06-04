@@ -1,6 +1,6 @@
 from django.shortcuts import render
-# Import the CreateView generic class so we can use it
-from django.views.generic.edit import CreateView
+# Import the generic classes so we can use them
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Import the Cat Model
 from .models import Cat
 
@@ -32,6 +32,15 @@ class CatCreate(CreateView):
   # __all__ will select all of the fields from the Cat model, but you can write them out as such:
   # fields = ['name', 'breed', 'description', 'age']
   fields = '__all__'
+
+class CatUpdate(UpdateView):
+  model = Cat
+  # Disallow the renaming of a cat by excluding the name field!
+  fields = ['breed', 'description', 'age']
+
+class CatDelete(DeleteView):
+  model = Cat
+  success_url = '/cats'
 
 
 # Add this cats list below the imports
