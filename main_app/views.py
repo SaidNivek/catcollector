@@ -34,7 +34,6 @@ class CatCreate(CreateView):
   fields = '__all__'
 
 
-
 # Add this cats list below the imports
 cats = [
   {'name': 'Lolo', 'breed': 'tabby', 'description': 'furry little demon', 'age': 3},

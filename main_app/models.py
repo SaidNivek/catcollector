@@ -1,4 +1,6 @@
 from django.db import models
+# Import the reverse function
+from django.urls import reverse
 
 # Create your models here.
 class Cat(models.Model):
@@ -10,3 +12,7 @@ class Cat(models.Model):
     #Overrriding the string method for this model
     def __str__(self):
         return self.name
+    
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'cat_id': self.id})
