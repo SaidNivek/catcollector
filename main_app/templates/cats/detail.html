@@ -44,7 +44,6 @@
       </tbody>
     </table>
   </div>
-  <!-- New Markup Above -->
 </div>
 
 <script>
@@ -56,5 +55,7 @@
     setDefaultDate: true,
     autoClose: true
   });
+  const selectEl = document.getElementById('id_meal');
+  M.FormSelect.init(selectEl);
 </script>
 {% endblock %}
