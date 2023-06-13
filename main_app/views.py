@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Import the Cat Model
 from .models import Cat
+# Import the FeedingForm
+from .forms import FeedingForm
 
 # Create your views here:
 
@@ -23,7 +25,12 @@ def cats_index(request):
 # Detail page for a clicked cat
 def cats_detail(request, cat_id):
   cat = Cat.objects.get(id=cat_id)
-  return render(request, 'cats/detail.html', { 'cat': cat })
+  # instantiate FeedingForm to be rendered in the template
+  feeding_form = FeedingForm()
+  return render(request, 'cats/detail.html', {
+    # include the cat and feeding_form in the context
+    'cat': cat, 'feeding_form': feeding_form
+  })
 
 # We are using the CreateView generic class and are using it to extend the class
 class CatCreate(CreateView):
